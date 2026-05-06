@@ -7,15 +7,20 @@
 
   <style>
     :root{
-      --bg:#061f3a;
-      --bg2:#0a3f74;
-      --card:#0d4b86;
-      --card2:#0b3868;
-      --line:rgba(255,255,255,.16);
+      --bg:#073b6d;
+      --bg2:#0b5fa5;
+      --bg3:#0d78c8;
+
+      --card:#0b4f8c;
+      --card2:#083a6b;
+
+      --line:rgba(255,255,255,.18);
       --text:#ffffff;
-      --muted:rgba(255,255,255,.78);
+      --muted:rgba(255,255,255,.82);
+
       --orange:#f5a623;
-      --orange2:#ffd17a;
+      --orange2:#ffd37a;
+      --orange3:#fff1c7;
     }
 
     *{
@@ -31,8 +36,9 @@
     body{
       font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;
       background:
-        radial-gradient(circle at 85% 10%,rgba(245,166,35,.18),transparent 24%),
-        linear-gradient(135deg,#04192f 0%,#062b4f 45%,#0a4f91 100%);
+        radial-gradient(circle at 82% 8%,rgba(245,166,35,.22),transparent 22%),
+        radial-gradient(circle at 8% 18%,rgba(48,145,220,.26),transparent 26%),
+        linear-gradient(135deg,#062b4f 0%,#0a4f91 42%,#0b6fbd 100%);
       color:var(--text);
       line-height:1.7;
     }
@@ -55,6 +61,10 @@
       position:relative;
       overflow:hidden;
       padding:72px 0 56px;
+      background:
+        radial-gradient(circle at 82% 12%,rgba(245,166,35,.20),transparent 24%),
+        radial-gradient(circle at 12% 20%,rgba(255,255,255,.12),transparent 26%),
+        linear-gradient(135deg,#062b4f 0%,#0a4f91 48%,#0b6fbd 100%);
     }
 
     .hero::before,
@@ -89,8 +99,8 @@
       display:inline-flex;
       padding:9px 15px;
       border-radius:999px;
-      background:rgba(255,255,255,.1);
-      border:1px solid var(--line);
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.22);
       color:var(--orange2);
       font-size:14px;
       font-weight:900;
@@ -142,27 +152,33 @@
     }
 
     .btn-main{
-      background:linear-gradient(135deg,var(--orange),var(--orange2));
+      background:linear-gradient(135deg,#f5a623,#ffd37a);
       color:#2d240d;
-      box-shadow:0 14px 30px rgba(245,166,35,.25);
+      box-shadow:0 14px 30px rgba(245,166,35,.28);
     }
 
     .btn-main:hover{
       transform:translateY(-2px);
+      box-shadow:0 18px 36px rgba(245,166,35,.35);
     }
 
     .btn-ghost{
-      background:rgba(255,255,255,.1);
-      border:1px solid var(--line);
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.22);
       color:#fff;
     }
 
+    .btn-ghost:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.18);
+    }
+
     .summary-card{
-      background:rgba(255,255,255,.1);
-      border:1px solid var(--line);
+      background:rgba(255,255,255,.11);
+      border:1px solid rgba(255,255,255,.20);
       border-radius:28px;
       padding:26px;
-      box-shadow:0 20px 50px rgba(0,0,0,.18);
+      box-shadow:0 20px 50px rgba(2,24,48,.20);
       backdrop-filter:blur(10px);
     }
 
@@ -181,7 +197,7 @@
     .summary-list div{
       padding:14px 16px;
       border-radius:18px;
-      background:rgba(255,255,255,.1);
+      background:rgba(255,255,255,.10);
       border:1px solid rgba(255,255,255,.12);
       font-weight:800;
     }
@@ -215,7 +231,8 @@
 
     .course{
       position:relative;
-      background:rgba(0,0,0,.10);
+      background:
+        linear-gradient(180deg,rgba(6,43,79,.55) 0%,rgba(10,79,145,.48) 100%);
     }
 
     .course-grid{
@@ -227,15 +244,17 @@
     .course-box{
       overflow:hidden;
       border-radius:28px;
-      background:rgba(255,255,255,.09);
-      border:1px solid var(--line);
-      box-shadow:0 18px 42px rgba(0,0,0,.16);
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.20);
+      box-shadow:0 18px 42px rgba(2,24,48,.18);
     }
 
     .course-top{
       padding:24px;
-      background:linear-gradient(135deg,rgba(245,166,35,.24),rgba(255,255,255,.08));
-      border-bottom:1px solid var(--line);
+      background:
+        linear-gradient(135deg,rgba(245,166,35,.26),rgba(255,255,255,.10)),
+        linear-gradient(135deg,#0a4f91,#0b6fbd);
+      border-bottom:1px solid rgba(255,255,255,.18);
     }
 
     .course-top .small{
@@ -266,8 +285,8 @@
     .module{
       padding:18px;
       border-radius:20px;
-      background:rgba(4,25,47,.58);
-      border:1px solid rgba(255,255,255,.12);
+      background:rgba(6,43,79,.66);
+      border:1px solid rgba(255,255,255,.14);
     }
 
     .module h4{
@@ -297,6 +316,9 @@
     .gain{
       position:relative;
       padding-top:64px;
+      background:
+        radial-gradient(circle at 82% 8%,rgba(245,166,35,.18),transparent 22%),
+        linear-gradient(135deg,#062b4f 0%,#0a4f91 45%,#0b6fbd 100%);
     }
 
     .gain-grid{
@@ -308,8 +330,9 @@
     .gain-card{
       padding:22px 18px;
       border-radius:22px;
-      background:rgba(255,255,255,.1);
-      border:1px solid var(--line);
+      background:rgba(255,255,255,.11);
+      border:1px solid rgba(255,255,255,.20);
+      box-shadow:0 20px 50px rgba(2,24,48,.20);
       min-height:170px;
     }
 
@@ -340,14 +363,17 @@
     .closing{
       padding:56px 0 72px;
       text-align:center;
+      background:
+        radial-gradient(circle at 18% 10%,rgba(255,255,255,.12),transparent 25%),
+        linear-gradient(135deg,#062b4f 0%,#0a4f91 60%,#0b6fbd 100%);
     }
 
     .closing-box{
       border-radius:30px;
-      background:rgba(255,255,255,.10);
-      border:1px solid var(--line);
+      background:rgba(255,255,255,.11);
+      border:1px solid rgba(255,255,255,.20);
       padding:36px 24px;
-      box-shadow:0 20px 48px rgba(0,0,0,.16);
+      box-shadow:0 20px 50px rgba(2,24,48,.20);
     }
 
     .closing h2{
@@ -365,9 +391,10 @@
 
     footer{
       text-align:center;
-      color:rgba(255,255,255,.58);
+      color:rgba(255,255,255,.68);
       font-size:14px;
-      padding-bottom:28px;
+      padding:0 16px 28px;
+      background:#0a4f91;
     }
 
     @media(max-width:900px){
@@ -611,7 +638,7 @@
       <div class="closing-box">
         <h2>經理的價值，是讓整個區一起成長。</h2>
         <p>
-          區勢領航計畫，協助業務經理把「會做」升級成「會經營」。
+          業務經理系列課程，協助業務經理從「會做」升級成「會經營」。
         </p>
         <a class="btn btn-main" href="https://kaoruying.github.io/salestraining/">
           回主管訓練藍圖
