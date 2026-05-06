@@ -1,1 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>區勢領航計畫｜經理區經營實戰課</title>
 
+  <style>
+    :root{
+      --bg:#061f3a;
+      --bg2:#0a3f74;
+      --card:#0d4b86;
+      --card2:#0b3868;
+      --line:rgba(255,255,255,.16);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.78);
+      --orange:#f5a623;
+      --orange2:#ffd17a;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;
+      background:
+        radial-gradient(circle at 85% 10%,rgba(245,166,35,.18),transparent 24%),
+        linear-gradient(135deg,#04192f 0%,#062b4f 45%,#0a4f91 100%);
+      color:var(--text);
+      line-height:1.7;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .wrap{
+      width:min(1080px,calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    section{
+      padding:64px 0;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:72px 0 56px;
+    }
+
+    .hero::before,
+    .course::before,
+    .gain::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+      background-size:42px 42px;
+      pointer-events:none;
+      opacity:.85;
+    }
+
+    .hero .wrap,
+    .course .wrap,
+    .gain .wrap{
+      position:relative;
+      z-index:1;
+    }
+
+    .hero-inner{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:36px;
+      align-items:center;
+    }
+
+    .badge{
+      display:inline-flex;
+      padding:9px 15px;
+      border-radius:999px;
+      background:rgba(255,255,255,.1);
+      border:1px solid var(--line);
+      color:var(--orange2);
+      font-size:14px;
+      font-weight:900;
+      margin-bottom:18px;
+      letter-spacing:.05em;
+    }
+
+    h1{
+      font-size:clamp(38px,6vw,68px);
+      line-height:1.08;
+      font-weight:900;
+      letter-spacing:-.04em;
+      margin-bottom:18px;
+    }
+
+    h1 span{
+      color:var(--orange2);
+    }
+
+    .hero-text{
+      font-size:clamp(20px,2.8vw,30px);
+      font-weight:900;
+      line-height:1.45;
+      margin-bottom:16px;
+    }
+
+    .hero-desc{
+      color:var(--muted);
+      font-size:18px;
+      max-width:620px;
+      margin-bottom:24px;
+    }
+
+    .btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 22px;
+      border-radius:999px;
+      font-weight:900;
+      transition:.25s;
+    }
+
+    .btn-main{
+      background:linear-gradient(135deg,var(--orange),var(--orange2));
+      color:#2d240d;
+      box-shadow:0 14px 30px rgba(245,166,35,.25);
+    }
+
+    .btn-main:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-ghost{
+      background:rgba(255,255,255,.1);
+      border:1px solid var(--line);
+      color:#fff;
+    }
+
+    .summary-card{
+      background:rgba(255,255,255,.1);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:26px;
+      box-shadow:0 20px 50px rgba(0,0,0,.18);
+      backdrop-filter:blur(10px);
+    }
+
+    .summary-card h2{
+      font-size:26px;
+      line-height:1.35;
+      margin-bottom:16px;
+      color:#fff;
+    }
+
+    .summary-list{
+      display:grid;
+      gap:12px;
+    }
+
+    .summary-list div{
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.12);
+      font-weight:800;
+    }
+
+    .head{
+      text-align:center;
+      margin-bottom:34px;
+    }
+
+    .kicker{
+      color:var(--orange2);
+      font-size:14px;
+      font-weight:900;
+      letter-spacing:.14em;
+      margin-bottom:8px;
+    }
+
+    .title{
+      font-size:clamp(30px,4vw,46px);
+      line-height:1.25;
+      font-weight:900;
+      margin-bottom:12px;
+    }
+
+    .desc{
+      color:var(--muted);
+      font-size:18px;
+      max-width:760px;
+      margin:0 auto;
+    }
+
+    .course{
+      position:relative;
+      background:rgba(0,0,0,.10);
+    }
+
+    .course-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+    }
+
+    .course-box{
+      overflow:hidden;
+      border-radius:28px;
+      background:rgba(255,255,255,.09);
+      border:1px solid var(--line);
+      box-shadow:0 18px 42px rgba(0,0,0,.16);
+    }
+
+    .course-top{
+      padding:24px;
+      background:linear-gradient(135deg,rgba(245,166,35,.24),rgba(255,255,255,.08));
+      border-bottom:1px solid var(--line);
+    }
+
+    .course-top .small{
+      color:var(--orange2);
+      font-weight:900;
+      font-size:14px;
+      letter-spacing:.08em;
+      margin-bottom:8px;
+    }
+
+    .course-top h3{
+      font-size:30px;
+      line-height:1.35;
+      margin-bottom:8px;
+    }
+
+    .course-top p{
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .module-list{
+      padding:20px;
+      display:grid;
+      gap:14px;
+    }
+
+    .module{
+      padding:18px;
+      border-radius:20px;
+      background:rgba(4,25,47,.58);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .module h4{
+      font-size:22px;
+      line-height:1.35;
+      margin-bottom:6px;
+      color:#fff;
+    }
+
+    .module .learn{
+      color:var(--orange2);
+      font-weight:900;
+      margin-bottom:8px;
+      font-size:15px;
+    }
+
+    .module ul{
+      padding-left:20px;
+      color:var(--muted);
+      font-size:15.5px;
+    }
+
+    .module li{
+      margin:4px 0;
+    }
+
+    .gain{
+      position:relative;
+      padding-top:64px;
+    }
+
+    .gain-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .gain-card{
+      padding:22px 18px;
+      border-radius:22px;
+      background:rgba(255,255,255,.1);
+      border:1px solid var(--line);
+      min-height:170px;
+    }
+
+    .gain-card .num{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--orange),var(--orange2));
+      color:#2d240d;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      margin-bottom:14px;
+    }
+
+    .gain-card h3{
+      font-size:21px;
+      line-height:1.35;
+      margin-bottom:8px;
+    }
+
+    .gain-card p{
+      color:var(--muted);
+      font-size:15.5px;
+    }
+
+    .closing{
+      padding:56px 0 72px;
+      text-align:center;
+    }
+
+    .closing-box{
+      border-radius:30px;
+      background:rgba(255,255,255,.10);
+      border:1px solid var(--line);
+      padding:36px 24px;
+      box-shadow:0 20px 48px rgba(0,0,0,.16);
+    }
+
+    .closing h2{
+      font-size:clamp(30px,4vw,48px);
+      line-height:1.35;
+      margin-bottom:14px;
+      font-weight:900;
+    }
+
+    .closing p{
+      color:var(--muted);
+      font-size:18px;
+      margin-bottom:24px;
+    }
+
+    footer{
+      text-align:center;
+      color:rgba(255,255,255,.58);
+      font-size:14px;
+      padding-bottom:28px;
+    }
+
+    @media(max-width:900px){
+      .hero-inner,
+      .course-grid,
+      .gain-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        padding-top:54px;
+      }
+    }
+
+    @media(max-width:640px){
+      section{
+        padding:54px 0;
+      }
+
+      .hero-desc,
+      .desc,
+      .closing p{
+        font-size:16px;
+      }
+
+      .btns{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .course-top h3{
+        font-size:26px;
+      }
+
+      .summary-card,
+      .course-top,
+      .module-list{
+        padding:20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <div class="badge">區勢領航計畫｜經理區經營實戰課</div>
+
+        <h1>
+          經理要學的，<br>
+          是<span>怎麼經營一個區</span>
+        </h1>
+
+        <div class="hero-text">
+          從自己會做，<br>
+          到讓團隊有方向、有方法、有成果。
+        </div>
+
+        <p class="hero-desc">
+          這門課聚焦業務經理最需要的區經營能力：
+          怎麼定目標、怎麼規劃區、怎麼帶團隊、怎麼選人才、
+          怎麼檢視績效、怎麼訓練激勵、怎麼用報表控成果。
+        </p>
+
+        <div class="btns">
+          <a href="#course" class="btn btn-main">看課程內容</a>
+          <a href="#gain" class="btn btn-ghost">看學到什麼</a>
+        </div>
+      </div>
+
+      <div class="summary-card">
+        <h2>上這堂課，業務經理會學到：</h2>
+        <div class="summary-list">
+          <div>如何從業務高手，轉成區經營者</div>
+          <div>如何把區目標拆成可追蹤的經營計畫</div>
+          <div>如何建立團隊共識、信任與向心力</div>
+          <div>如何檢視夥伴問題，並用訓練與激勵推動成果</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="course" class="course">
+    <div class="wrap">
+      <div class="head">
+        <div class="kicker">課程內容</div>
+        <h2 class="title">兩階段、四天，補齊經理區經營能力</h2>
+        <p class="desc">
+          基礎班建立經營架構；進階班強化帶人與控盤能力。
+        </p>
+      </div>
+
+      <div class="course-grid">
+
+        <div class="course-box">
+          <div class="course-top">
+            <div class="small">第一階段｜經理經典基礎班</div>
+            <h3>先建立區經營基本盤</h3>
+            <p>讓經理知道自己的角色、區該怎麼規劃、團隊怎麼凝聚、人該怎麼選。</p>
+          </div>
+
+          <div class="module-list">
+            <div class="module">
+              <h4>01｜區經理的定位</h4>
+              <div class="learn">學會：經理不只是自己做業績，而是要達標、發展、培育。</div>
+              <ul>
+                <li>釐清業務功能與管理功能的差異</li>
+                <li>知道經理在區團隊中的五大職責</li>
+                <li>檢視自己是業務型、行政型，還是菁英型經理</li>
+              </ul>
+            </div>
+
+            <div class="module">
+              <h4>02｜區經營規劃力</h4>
+              <div class="learn">學會：把區目標變成具體經營計畫。</div>
+              <ul>
+                <li>用 DOME 步驟做診斷、目標、方法、評估</li>
+                <li>看懂業務經營關鍵指標</li>
+                <li>運用區營運計畫書追蹤人力、業績與產能</li>
+              </ul>
+            </div>
+
+            <div class="module">
+              <h4>03｜打造黃金團隊</h4>
+              <div class="learn">學會：讓一群人變成真正的工作團隊。</div>
+              <ul>
+                <li>判斷團隊在形成期、風暴期、規範期或表現期</li>
+                <li>建立團隊共識與高信任感</li>
+                <li>運用工作說明承諾書，對齊角色與責任</li>
+              </ul>
+            </div>
+
+            <div class="module">
+              <h4>04｜找到我的千里馬</h4>
+              <div class="learn">學會：不只大量增員，更要高留存選才。</div>
+              <ul>
+                <li>掌握增選六大流程</li>
+                <li>設計有效益的增員活動</li>
+                <li>強化選才面談，找出適合的人才</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-box">
+          <div class="course-top">
+            <div class="small">第二階段｜經理進階班</div>
+            <h3>再強化帶人與控盤能力</h3>
+            <p>讓經理能看懂夥伴問題，訓練到位、激勵到位，並用控制穩住成果。</p>
+          </div>
+
+          <div class="module-list">
+            <div class="module">
+              <h4>01｜區經營指導：檢視</h4>
+              <div class="learn">學會：先判斷問題，再決定怎麼處理。</div>
+              <ul>
+                <li>用「技能 × 激勵」看懂績效表現</li>
+                <li>辨識夥伴是沒做、做不夠，還是做錯</li>
+                <li>找出目標與實際表現的差距</li>
+              </ul>
+            </div>
+
+            <div class="module">
+              <h4>02｜區經營指導：訓練</h4>
+              <div class="learn">學會：不是提醒夥伴，而是教會夥伴。</div>
+              <ul>
+                <li>運用 PESOS 訓練步驟</li>
+                <li>建立新人生產線與工作站概念</li>
+                <li>把主管經驗變成可複製的訓練流程</li>
+              </ul>
+            </div>
+
+            <div class="module">
+              <h4>03｜區經營指導：激勵</h4>
+              <div class="learn">學會：找出夥伴真正願意投入的理由。</div>
+              <ul>
+                <li>認識 12 項激勵因子</li>
+                <li>透過表格了解夥伴的成就動機</li>
+                <li>依不同動機設計更有效的激勵方式</li>
+              </ul>
+            </div>
+
+            <div class="module">
+              <h4>04｜區經營控制</h4>
+              <div class="learn">學會：提早看見偏差，提早修正行動。</div>
+              <ul>
+                <li>理解事前、事中、事後控制</li>
+                <li>用燈號預警判斷綠燈、黃燈、紅燈狀態</li>
+                <li>透過生產性報表進行區控管理</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="gain" class="gain">
+    <div class="wrap">
+      <div class="head">
+        <div class="kicker">學完後能得到什麼</div>
+        <h2 class="title">回到單位後，可以直接用的四個能力</h2>
+      </div>
+
+      <div class="gain-grid">
+        <div class="gain-card">
+          <div class="num">01</div>
+          <h3>會規劃區</h3>
+          <p>知道如何診斷現況、設定目標、拆解行動，讓區經營有方向。</p>
+        </div>
+
+        <div class="gain-card">
+          <div class="num">02</div>
+          <h3>會帶團隊</h3>
+          <p>知道如何建立共識、信任與角色分工，讓團隊更有向心力。</p>
+        </div>
+
+        <div class="gain-card">
+          <div class="num">03</div>
+          <h3>會育人才</h3>
+          <p>知道如何檢視夥伴問題，並透過訓練與激勵推動成長。</p>
+        </div>
+
+        <div class="gain-card">
+          <div class="num">04</div>
+          <h3>會控成果</h3>
+          <p>知道如何用報表、控制點與預警機制，讓績效不失控。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <div class="closing-box">
+        <h2>經理的價值，是讓整個區一起成長。</h2>
+        <p>
+          區勢領航計畫，協助業務經理把「會做」升級成「會經營」。
+        </p>
+        <a class="btn btn-main" href="https://kaoruying.github.io/salestraining/">
+          回主管訓練藍圖
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    區勢領航計畫｜經理經典基礎班 × 經理進階班
+  </footer>
+
+</body>
+</html>
